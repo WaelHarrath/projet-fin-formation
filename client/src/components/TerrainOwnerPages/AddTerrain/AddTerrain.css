@@ -1,0 +1,22 @@
+.terrain-form-add .edit-button {
+    padding: 1% ;
+    width: 150px ;
+    border-radius: 30px ;
+    text-decoration: none;
+margin:0 0 15px ;
+    font-weight: 600 ;
+   
+  }
+.terrain-form-add  .card-body {
+    padding: 1rem;
+    padding-top: 10px;
+}
+
+.terrain-form-add .buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px ;
+}
+.terrain-form-add .form-group {
+  margin-bottom: 10px;
+}

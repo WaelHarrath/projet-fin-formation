@@ -1,0 +1,10 @@
+//get reservation constants
+export const GET_RESERVATION = "GET_RESERVATION";
+export const GET_RESERVATION_SUCC = "GET_RESERVATION_SUCC";
+export const GET_RESERVATION_FAIL = "GET_RESERVATION_FAIL";
+
+//create reservation constants
+
+export const CREATE_RESERVATION = "CREATE_RESERVATION";
+export const CREATE_RESERVATION_SUC = "CREATE_RESERVATION_SUC";
+export const CREATE_RESERVATION_FAIL = "CREATE_RESERVATION_FAIL*";
