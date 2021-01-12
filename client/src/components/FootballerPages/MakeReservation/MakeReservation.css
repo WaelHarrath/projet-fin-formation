@@ -1,0 +1,47 @@
+.make-res-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.res-formBx{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.res-formBx form h2
+{
+font-size: 18px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 2px;
+text-align: center;
+width: 100%;
+margin-bottom: 10px;
+
+
+}
+.res-formBx form input
+{
+position: relative;
+width: 100%;
+padding:10px;
+background: #f5f5f5;
+color:#333;
+border:none;
+outline: none;
+box-shadow: none;
+margin:8px 0;
+font-size: 14px;
+letter-spacing: 1px;
+font-weight: 300;
+}
+
+.res-formBx form  button 
+{
+    font-weight: 600;
+    text-decoration: none;
+    color:#677eff;
+    border: none;
+    background-color: white
+}

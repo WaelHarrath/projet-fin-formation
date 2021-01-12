@@ -77,7 +77,10 @@ exports.searchTerrainController = async (req, res) => {
     if (searched === "") {
       res.status(400).send({ msg: "no terrain with this address" });
     } else {
-      let result = await Terrain.find({ address: { $regex: searched } });
+      let result = await Terrain.find({
+        address: { $regex: searched },
+        reserved: false,
+      });
 
       res.status(200).send({ data: result });
     }

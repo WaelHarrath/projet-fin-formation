@@ -113,17 +113,20 @@ function TerrainCard({ terrain, role, userId }) {
           >
             {role === "terrainOwner" ? "Edit" : "Book"}
           </Button>
-
-          <Button
-            variant={
-              role === "terrainOwner"
-                ? "outline-danger edit-button"
-                : "outline-primary edit-button"
-            }
-            onClick={handleDeleteShow}
-          >
-            {role === "terrainOwner" ? "Delete" : "Show"}
-          </Button>
+          {role === "terrainOwner" ? (
+            <Button
+              variant={
+                role === "terrainOwner"
+                  ? "outline-danger edit-button"
+                  : "outline-primary edit-button"
+              }
+              onClick={handleDeleteShow}
+            >
+              Delete
+            </Button>
+          ) : (
+            ""
+          )}
         </div>
       </Card>
     </div>

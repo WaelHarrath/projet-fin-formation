@@ -1,11 +1,13 @@
 const Reservation = require("../models/ReservationSchema");
-
+const Terrain = require("../models/TerrainSchema");
+const User = require("../models/UserSchema");
 //make a reservation
 exports.makeReservationController = async (req, res) => {
   const terrain = req.params.terrId;
   const user = req.params.userId;
+  const matchDate = req.body.matchDate;
   try {
-    const newReservation = new Reservation({ terrain, user });
+    const newReservation = new Reservation({ terrain, user, matchDate });
     const searchRes = await Reservation.findOne({
       terrain: terrain,
       user: user,
@@ -14,7 +16,10 @@ exports.makeReservationController = async (req, res) => {
     if (searchRes) {
       return res.status(400).send({ msg: "A reservation is already made !" });
     }
-    let result = await newReservation.save();
+    const searchTerr = await Terrain.findById({ _id: terrain });
+    newReservation.terrainOwner = searchTerr.owner;
+    const result = await newReservation.save();
+
     res
       .status(200)
       .send({ reservation: result, msg: "Reservation is made !!" });
@@ -24,51 +29,113 @@ exports.makeReservationController = async (req, res) => {
       .send({ errors: error, msg: "can not make this reservation" });
   }
 };
+//find terrain reservations
+exports.getTerrainReservationsController = async (req, res) => {
+  const ownerId = req.params.ownerId;
 
-// get all reservation
-exports.getAllReservationController = async (req, res) => {
   try {
-    let result = await Reservation.find().populate("terrain").populate("user");
+    const result = await Reservation.find({ terrainOwner: ownerId })
+      .populate("user")
+      .populate("terrain");
     if (!result) {
-      return res.status(400).send({ msg: "no reservation was found !!" });
+      return res
+        .status(400)
+        .send({ msg: "can't find reservations for this owner" });
     }
+
     res
       .status(200)
-      .send({ reservations: result, msg: "All reservations was found !!" });
+      .send({ reservations: result, msg: " terrain reservations success !" });
   } catch (error) {
-    res
-      .status(500)
-      .send({ errors: error, msg: "Error finding all reservations" });
+    res.status(500).send({ msg: "error getting terrain reservations" });
   }
 };
-//get reservation by iD
-exports.findReservationByIdController = async (req, res) => {
-  let resId = req.params.resId;
+
+//find my reservations
+exports.getMyReservationsController = async (req, res) => {
+  const userId = req.params.userId;
   try {
-    let result = await Reservation.findById({ _id: resId })
-      .populate("terrain")
-      .populate("user");
+    const result = await Reservation.find({ user: userId })
+      .populate("user")
+      .populate("terrain");
+    if (!result) {
+      return res
+        .status(400)
+        .send({ msg: "can't find reservations for this user" });
+    }
+
+    res
+      .status(200)
+      .send({ reservations: result, msg: " user reservationsuccess !" });
+  } catch (error) {
+    res.status(500).send({ msg: "error getting user reservations" });
+  }
+};
+//confirm a reservation
+exports.confirmReservationController = async (req, res) => {
+  const resId = req.params.resId;
+
+  try {
+    let result = await Reservation.findById({ _id: resId });
     if (!result) {
       return res.status(400).send({ msg: "no reservation with this ID !!" });
+    } else {
+      result.pending = false;
+      result.confirmed = true;
+      result.confirmedAt = Date.now();
+
+      await result.save();
+      const searchedTerrain = await Terrain.findById({ _id: result.terrain });
+      searchedTerrain.reserved = true;
+      await searchedTerrain.save();
+      res
+        .status(200)
+        .send({ reservation: result, msg: "reservation confirmed !" });
     }
-    res
-      .status(200)
-      .send({ reservation: result, msg: "Found the reservation with this ID" });
   } catch (error) {
     res
       .status(500)
-      .send({ errors: error, msg: "Error finding a reservation by ID" });
+      .send({ errors: error, msg: "Error confirming this reservation" });
   }
 };
+//decline a reservation
+exports.declineReservationController = async (req, res) => {
+  const resId = req.params.resId;
 
-//confirm or decline a reservation
+  try {
+    let result = await Reservation.findById({ _id: resId });
+    if (!result) {
+      return res.status(400).send({ msg: "no reservation with this ID !!" });
+    } else {
+      result.pending = false;
+      result.confirmed = false;
+      result.confirmetAt = Date.now();
 
+      await result.save();
+      const searchedTerr = await Terrain.findById({ _id: result.terrain });
+      searchedTerr.reserved = false;
+      await searchedTerr.save();
+      res
+        .status(200)
+        .send({ reservation: result, msg: "reservation declined !" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({ errors: error, msg: "Error declining this reservation" });
+  }
+};
 //delete a reservation
 exports.deleteReservationController = async (req, res) => {
   const resId = req.params.resId;
   try {
-    await Reservation.findByIdAndDelete({ _id: resId });
-    res.status(200).send({ msg: "Reservation deleted" });
+    const reservation = await Reservation.findById({ _id: resId });
+
+    const searchedTerr = await Terrain.findById({ _id: reservation.terrain });
+    searchedTerr.reserved = false;
+    await searchedTerr.save();
+    const result = await Reservation.findByIdAndDelete({ _id: resId });
+    res.status(200).send({ reservation: result, msg: "Reservation deleted" });
   } catch (error) {
     res
       .status(500)

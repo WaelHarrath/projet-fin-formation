@@ -12,6 +12,9 @@ import { currentUser } from "./JS/Actions/UserActions";
 import PrivateRoute from "./components/router/PrivateRoutes";
 import MyTerrains from "./components/TerrainOwnerPages/MyTerrains/MyTerrains";
 import SearchTerrains from "./components/FootballerPages/SearchTerrain/SearchTerrains";
+import ReservationDemandes from "./components/TerrainOwnerPages/ReservationDemandes/ReservationDemandes";
+import MakeReservation from "./components/FootballerPages/MakeReservation/MakeReservation";
+import ReservedTerrain from "./components/FootballerPages/ReservedTerrain/ReservedTerrain";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +34,13 @@ function App() {
           component={AddTerrain}
         />
         <PrivateRoute path="/myTerrains" component={MyTerrains} />
+        <PrivateRoute
+          path="/reservationDemande"
+          component={ReservationDemandes}
+        />
         <PrivateRoute path="/searchTerrains" component={SearchTerrains} />
+        <PrivateRoute path="/makeReservation" component={MakeReservation} />
+        <PrivateRoute path="/myReservations" component={ReservedTerrain} />
       </Switch>
     </div>
   );
