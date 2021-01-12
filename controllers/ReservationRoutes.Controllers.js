@@ -5,14 +5,16 @@ const User = require("../models/UserSchema");
 exports.makeReservationController = async (req, res) => {
   const terrain = req.params.terrId;
   const user = req.params.userId;
-  const matchDate = req.body.matchDate;
+  const matchDate = req.params.matchDate;
+  console.log("match Date", matchDate);
+  console.log(req.body);
   try {
     const newReservation = new Reservation({ terrain, user, matchDate });
     const searchRes = await Reservation.findOne({
       terrain: terrain,
       user: user,
       pending: true,
-    });
+    }); 
     if (searchRes) {
       return res.status(400).send({ msg: "A reservation is already made !" });
     }

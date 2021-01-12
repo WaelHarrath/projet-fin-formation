@@ -12,6 +12,10 @@
   align-items: center;
   width: 100%;
 }
+.inner-nav a {
+  text-decoration: none;
+  cursor: pointer;
+}
 .logout-btn {
   padding: 5px;
   background: #75f336;

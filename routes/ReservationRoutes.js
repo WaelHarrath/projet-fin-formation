@@ -12,7 +12,10 @@ const {
 } = require("../controllers/ReservationRoutes.Controllers");
 
 //make a reservation
-router.post("/makeReservation/:terrId/:userId", makeReservationController);
+router.post(
+  "/makeReservation/:terrId/:userId/:matchDate",
+  makeReservationController
+);
 
 //get user reservations
 router.post("/userReservations/:userId", getMyReservationsController);

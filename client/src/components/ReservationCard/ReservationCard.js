@@ -1,14 +1,13 @@
 import React from "react";
 import "./ReservationCard.css";
-import { Carousel, Card, Button } from "react-bootstrap";
+import { Carousel, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import Moment from "moment";
 
 import {
   confirmReservation,
   deleteReservation,
   declineReservation,
-  getUserReservations,
-  getTerrainReservations,
 } from "../../JS/Actions/ReservationActions";
 function ReservationCard({ reservation, role, userId }) {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ function ReservationCard({ reservation, role, userId }) {
   terrain.terrainImages.map((el) => imgs.push(el));
 
   return (
-    <div className="card">
+    <div className="res-card">
       <div className="row ">
         <div className="col-md-7 px-3">
           <div className="card-block px-6">
@@ -43,7 +42,7 @@ function ReservationCard({ reservation, role, userId }) {
               style={{ display: "flex", justifyContent: "space-around" }}
             >
               <p className="card-text">Match date:</p>
-              <p>{reservation.matchDate}</p>
+              <p>{Moment(reservation.matchDate).format("DD-MM-YYYY")}</p>
             </div>
 
             <div

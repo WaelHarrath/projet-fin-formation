@@ -24,8 +24,7 @@ export const makeReservation = (terrId, userId, matchDate, history) => async (
   dispatch({ type: CREATE_RESERVATION });
   try {
     const result = await axios.post(
-      `/reservation/makeReservation/${terrId}/${userId}`,
-      matchDate
+      `/reservation/makeReservation/${terrId}/${userId}/${matchDate}`
     );
     dispatch({ type: CREATE_RESERVATION_SUCC, payload: result.data });
     dispatch(getUserReservations(userId));

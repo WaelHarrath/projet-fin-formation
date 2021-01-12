@@ -1,0 +1,303 @@
+.HomePage body, html {
+	font-family: 'Open Sans', sans-serif;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	color: #fff;
+	font-weight: 400;
+	width: 100% !important;
+	height: 100% !important;
+}
+.HomePage h2, h3, h4 {
+	font-family: 'Raleway', sans-serif;
+}
+.HomePage h2 {
+	text-transform: uppercase;
+	margin: 0 0 20px 0;
+	font-weight: 800;
+	font-size: 36px;
+	color: #fff;
+}
+.HomePage h3 {
+	font-size: 20px;
+	font-weight: 600;
+	color: #ffff;
+}
+.HomePage h4 {
+	font-size: 18px;
+	color: #fff;
+	font-weight: 600;
+}
+.HomePage h5 {
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 20px;
+}
+.HomePage p {
+	font-size: 15px;
+}
+.HomePage p.intro {
+	margin: 12px 0 0;
+	line-height: 24px;
+}
+.HomePage a {
+	color: #608dfd;
+	font-weight: 400;
+}
+.HomePage a:hover, a:focus {
+	text-decoration: none;
+	color: #608dfd;
+}
+.HomePage ul, ol {
+    list-style: none;
+    color:#fff
+}
+
+.HomePage hr {
+	height: 2px;
+	width: 70px;
+	text-align: center;
+	position: relative;
+	background: #1E7A46;
+	margin-bottom: 20px;
+	border: 0;
+}
+.HomePage .intro {
+	display: table;
+	width: 100%;
+	padding: 0;
+	background: url(https://www.milleworld.com/wp-content/uploads/2018/08/switzerland.jpg) center center no-repeat;
+	background-color: #e5e5e5;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+.HomePage .intro .overlay {
+	background: rgba(0,0,0,0.2);
+}
+.HomePage .intro h1 {
+	font-family: 'Raleway', sans-serif;
+	color: #fff;
+	font-size: 82px;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.HomePage .intro h1 span {
+	font-weight: 800;
+    color: #5ca9fb;
+    font-family: 'Raleway', sans-serif;
+	color: #fff;
+	font-size: 82px;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.HomePage .intro p {
+	color: #fff;
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 30px;
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+.HomePage header .intro-text {
+	padding-top: 50px;
+	padding-bottom: 450px;
+	text-align: center;
+}
+#about {
+    background: url(https://t2.uc.ltmcdn.com/fr/images/8/4/8/l_uefa_12848_9_600.jpg) center center  no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+	-o-background-size: cover;
+    padding: 100px 0;
+  
+}
+#about h3 {
+	font-size: 22px;
+	margin: 0 0 20px 0;
+}
+#about h2 {
+	position: relative;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+#about h2::after {
+	position: absolute;
+	content: "";
+	background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+	height: 4px;
+	width: 60px;
+	bottom: 0;
+	left: 0;
+}
+#about .about-text li {
+	margin-bottom: 6px;
+	margin-left: 6px;
+	list-style: none;
+	padding: 0;
+}
+#about .about-text li:before {
+	content: '\f00c';
+	font-family: 'FontAwesome';
+	color: #5ca9fb;
+	font-size: 11px;
+	font-weight: 300;
+	padding-right: 8px;
+}
+#about img {
+	width: 520px;
+	margin-top: 10px;
+	background: #fff;
+	border-right: 0;
+	box-shadow: 0 0 50px rgba(0,0,0,0.06);
+}
+#about p {
+	line-height: 24px;
+    margin: 30px 0;
+    color:#fff;
+}
+#contact {
+	padding: 100px 0 60px 0;
+	background:#75f336;
+	color: rgba(255,255,255,.75);
+}
+#contact .section-title {
+	margin-bottom: 40px;
+}
+#contact .section-title p {
+	font-size: 16px;
+}
+#contact h2 {
+	color: #fff;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+#contact .section-title h2::after {
+	position: absolute;
+	content: "";
+	background: rgba(255,255,255,.3);
+	height: 4px;
+	width: 60px;
+	bottom: 0;
+	left: 30px;
+}
+#contact h3 {
+	color: #fff;
+	margin-top: 80px;
+	margin-bottom: 25px;
+	padding-bottom: 20px;
+	font-weight: 400;
+}
+#contact form {
+	padding-top: 20px;
+}
+#contact .text-danger {
+	color: #cc0033;
+	text-align: left;
+}
+#contact .btn-custom {
+	margin: 30px 0;
+	background: transparent;
+	border: 2px solid #fff;
+}
+#contact .btn-custom:hover {
+	color: #1f386e;
+	background: #fff;
+}
+.HomePage label {
+	font-size: 12px;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+	float: left;
+}
+#contact .form-control {
+	display: block;
+	width: 100%;
+	padding: 6px 12px;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: #444;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ddd;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+#contact .form-control:focus {
+	border-color: #999;
+	outline: 0;
+	-webkit-box-shadow: transparent;
+	box-shadow: transparent;
+}
+#contact .form-control::-webkit-input-placeholder {
+color: #777;
+}
+#contact .form-control:-moz-placeholder {
+color: #777;
+}
+#contact .form-control::-moz-placeholder {
+color: #777;
+}
+#contact .form-control:-ms-input-placeholder {
+color: #777;
+}
+#contact .contact-item {
+	margin: 20px 0;
+}
+#contact .contact-item span {
+	color: rgba(255,255,255,1);
+	margin-bottom: 10px;
+	display: block;
+}
+#contact .contact-item i.fa {
+	margin-right: 10px;
+}
+#contact .social {
+	border-top: 1px solid rgba(255,255,255,0.15);
+	padding-top: 50px;
+	margin-top: 50px;
+	text-align: center;
+}
+#contact .social ul li {
+	display: inline-block;
+	margin: 0 20px;
+}
+#contact .social i.fa {
+	font-size: 22px;
+	width: 48px;
+	height: 48px;
+	padding: 12px 0;
+	border: 2px solid #fff;
+	color: #fff;
+	border-radius: 50%;
+	transition: all 0.3s;
+}
+#contact .social i.fa:hover {
+	color: #608dfd;
+	background: #fff;
+}
+/* Footer Section*/
+#footer {
+	background: #f6f6f6;
+	padding: 30px 0;
+}
+#footer p {
+	color: #888;
+	font-size: 14px;
+}
+#footer a {
+	color: #608dfd;
+}
+#footer a:hover {
+	border-bottom: 2px solid #608dfd;
+}

@@ -1,0 +1,19 @@
+/* Make the image responsive */
+.error-container img {
+    width: 100%;
+    height:100%;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .error-container .btn {
+    position: absolute;
+    top: 15%;
+    left: 46%;
+    background-color: #cd4343;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }

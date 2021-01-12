@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import "./MakeReservation.css";
 import { useDispatch, useSelector } from "react-redux";
-function MakeReservation() {
+import {makeReservation}from "../../../JS/Actions/ReservationActions"
+import { useHistory } from "react-router-dom";
+function MakeReservation({location}) {
   const dispatch = useDispatch();
-  const [matchDate, setMatchDate] = useState("");
+  const history=useHistory();
+  const [matchDate, setMatchDate] = useState();
   const user = useSelector((state) => state.userReducer.user);
-
+  const userName  =  user && user.fullName;
+  const userEmail  =  user && user.email;
+  const userId=user&&user._id;
+  console.log(location.state);
+ const terrId=location.state._id;
+ console.log(terrId)
   return (
     <div className="make-res-container">
       <div className="res-formBx">
@@ -18,7 +26,8 @@ function MakeReservation() {
             type="text"
             name=""
             placeholder="FullName"
-            value={user && user.fullName}
+            value={userName}
+            readOnly
           />
           <label>
             <strong>Email Adress:</strong>
@@ -27,7 +36,8 @@ function MakeReservation() {
             type="email"
             name=""
             placeholder="Email Address"
-            value={user && user.email}
+            value={userEmail}
+            readOnly
           />
           <label>
             <strong>Match Date:</strong>
@@ -46,6 +56,7 @@ function MakeReservation() {
             name=""
             value="Book"
             style={{ background: "#75f336" }}
+            onClick={()=>{dispatch(makeReservation(terrId,userId,matchDate,history))}}
           />
         </form>
       </div>

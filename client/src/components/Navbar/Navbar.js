@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { useHistory } from "react-router-dom";
+
 import { SideBarDataFootballer } from "./SideBarDataFootballer";
 import { IconContext } from "react-icons";
 import { SideBarDataTerrOwner } from "./SideBarDataTerrOwner";
 import { SideBarDataAdmin } from "./SideBarDataAdmin";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../JS/Actions/UserActions";
 function NavBar() {
@@ -41,10 +41,13 @@ function NavBar() {
 
           <div className="inner-nav">
             <div className="text-aria">
+            <Link to="/">
               <span style={{ color: "#fff", fontSize: "2rem" }}>Reservi</span>
               <span style={{ color: "#75F336", fontSize: "2rem" }}>
                 Takwira
               </span>
+              </Link>
+
             </div>
             {!Auth ? (
               <Link to="/loginRegister">

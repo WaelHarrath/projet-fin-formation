@@ -15,6 +15,7 @@ import SearchTerrains from "./components/FootballerPages/SearchTerrain/SearchTer
 import ReservationDemandes from "./components/TerrainOwnerPages/ReservationDemandes/ReservationDemandes";
 import MakeReservation from "./components/FootballerPages/MakeReservation/MakeReservation";
 import ReservedTerrain from "./components/FootballerPages/ReservedTerrain/ReservedTerrain";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
         <PrivateRoute path="/searchTerrains" component={SearchTerrains} />
         <PrivateRoute path="/makeReservation" component={MakeReservation} />
         <PrivateRoute path="/myReservations" component={ReservedTerrain} />
+        <Route path="/*" component={ErrorPage} />
       </Switch>
     </div>
   );

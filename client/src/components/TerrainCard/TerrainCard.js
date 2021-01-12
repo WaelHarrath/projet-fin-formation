@@ -3,13 +3,14 @@ import "./TerrainCard.css";
 import { Carousel, Card, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { deleteTerrain, toggleEdit } from "../../JS/Actions/TerrainActions";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory, Link } from "react-router-dom";
+import MakeReservation from "../FootballerPages/MakeReservation/MakeReservation";
 function TerrainCard({ terrain, role, userId }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const imgs = [];
   terrain.terrainImages.map((el) => imgs.push(el));
-  const handleDeleteShow = (e) => {
+  const handleDelete = (e) => {
     if (role === "terrainOwner") {
       dispatch(deleteTerrain(userId, terrain._id));
     }
@@ -104,15 +105,29 @@ function TerrainCard({ terrain, role, userId }) {
           </div>
         </Card.Body>
         <div className="buttons">
-          <Button
-            variant="outline-primary edit-button"
-            onClick={(e) => {
-              handleEditBook(e);
-              history.push(`/editTerrain/${terrain._id}`);
-            }}
-          >
-            {role === "terrainOwner" ? "Edit" : "Book"}
-          </Button>
+          {role === "footBaller" ? (
+            <Link to={{ pathname: "/makeReservation", state: terrain }}>
+              <Button
+                variant="outline-primary edit-button"
+                onClick={(e) => {
+                  handleEditBook(e);
+                }}
+              >
+                {role === "terrainOwner" ? "Edit" : "Book"}
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              variant="outline-primary edit-button"
+              onClick={(e) => {
+                handleEditBook(e);
+                history.push(`/editTerrain/${terrain._id}`);
+              }}
+            >
+              {role === "terrainOwner" ? "Edit" : "Book"}
+            </Button>
+          )}
+
           {role === "terrainOwner" ? (
             <Button
               variant={
@@ -120,7 +135,7 @@ function TerrainCard({ terrain, role, userId }) {
                   ? "outline-danger edit-button"
                   : "outline-primary edit-button"
               }
-              onClick={handleDeleteShow}
+              onClick={handleDelete}
             >
               Delete
             </Button>
