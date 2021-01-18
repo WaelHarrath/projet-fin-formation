@@ -17,8 +17,17 @@ import axios from "axios";
 
 export const addTerrain = (terrain, history, id) => async (dispatch) => {
   dispatch({ type: LOAD_TERRAIN });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.post(`/terrain/${id}/createTerrain`, terrain); //terrain, msg
+    let result = await axios.post(
+      `/terrain/${id}/createTerrain`,
+      terrain,
+      options
+    ); //terrain, msg
     dispatch({ type: ADD_TERRAIN, payload: result.data });
     dispatch({ type: GET_TERRAIN });
     history.push(`/myTerrains`);
@@ -31,8 +40,13 @@ export const addTerrain = (terrain, history, id) => async (dispatch) => {
 
 export const getTerrains = (id) => async (dispatch) => {
   dispatch({ type: LOAD_TERRAIN });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.get(`/terrain/${id}/myTerrains`);
+    let result = await axios.get(`/terrain/${id}/myTerrains`, options);
     dispatch({ type: GET_TERRAIN, payload: result.data.response });
   } catch (error) {
     dispatch({ type: FAIL_TERRAIN, payload: error.response.data });
@@ -42,8 +56,17 @@ export const getTerrains = (id) => async (dispatch) => {
 
 export const searchTerrains = (searchAdr) => async (dispatch) => {
   dispatch({ type: SEARCH_TERR_LOAD });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.post("/terrain/searchTerrains", searchAdr);
+    let result = await axios.post(
+      "/terrain/searchTerrains",
+      searchAdr,
+      options
+    );
 
     dispatch({ type: SEARCH_TERR_SUCC, payload: result.data.data });
   } catch (error) {
@@ -54,8 +77,16 @@ export const searchTerrains = (searchAdr) => async (dispatch) => {
 //udpate terrain
 //toggle edit
 export const toggleEdit = (userId, terrainId) => async (dispatch) => {
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.get(`/terrain/findTerr/${userId}/${terrainId}`);
+    let result = await axios.get(
+      `/terrain/findTerr/${userId}/${terrainId}`,
+      options
+    );
     dispatch({ type: EDIT_TERRAIN, payload: result.data.response });
   } catch (error) {
     dispatch({ type: SEARCH_TERR_FAIL, payload: error.response.msg });
@@ -64,10 +95,16 @@ export const toggleEdit = (userId, terrainId) => async (dispatch) => {
 export const updateTerrain = (updateData, editedTerrId, history) => async (
   dispatch
 ) => {
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
     let result = await axios.post(
       `/terrain/updateTerrain/${editedTerrId}`,
-      updateData
+      updateData,
+      options
     );
     dispatch({ type: EDIT_TERRAIN_SUCC });
     history.push(`/myTerrains`);
@@ -80,8 +117,16 @@ export const updateTerrain = (updateData, editedTerrId, history) => async (
 
 export const deleteTerrain = (id, terId) => async (dispatch) => {
   dispatch({ type: LOAD_TERRAIN });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.delete(`/terrain/${id}/myTerrains/${terId}`);
+    let result = await axios.delete(
+      `/terrain/${id}/myTerrains/${terId}`,
+      options
+    );
     dispatch({ type: DELETE_TERRAIN });
     dispatch(getTerrains(id));
   } catch (error) {

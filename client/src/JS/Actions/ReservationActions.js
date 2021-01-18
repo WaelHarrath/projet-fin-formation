@@ -22,9 +22,15 @@ export const makeReservation = (terrId, userId, matchDate, history) => async (
   dispatch
 ) => {
   dispatch({ type: CREATE_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
     const result = await axios.post(
-      `/reservation/makeReservation/${terrId}/${userId}/${matchDate}`
+      `/reservation/makeReservation/${terrId}/${userId}/${matchDate}`,
+      options
     );
     dispatch({ type: CREATE_RESERVATION_SUCC, payload: result.data });
     dispatch(getUserReservations(userId));
@@ -37,8 +43,16 @@ export const makeReservation = (terrId, userId, matchDate, history) => async (
 
 export const getUserReservations = (userId) => async (dispatch) => {
   dispatch({ type: GET_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    const result = await axios.post(`/reservation/userReservations/${userId}`);
+    const result = await axios.post(
+      `/reservation/userReservations/${userId}`,
+      options
+    );
     dispatch({ type: GET_RESERVATION_SUCC, payload: result.data.reservations });
   } catch (error) {
     dispatch({ type: GET_RESERVATION_FAIL, payload: error });
@@ -47,9 +61,15 @@ export const getUserReservations = (userId) => async (dispatch) => {
 //get terrain reservations
 export const getTerrainReservations = (ownerId) => async (dispatch) => {
   dispatch({ type: GET_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
     const result = await axios.post(
-      `/reservation/terrainReservations/${ownerId}`
+      `/reservation/terrainReservations/${ownerId}`,
+      options
     );
 
     dispatch({
@@ -64,8 +84,16 @@ export const getTerrainReservations = (ownerId) => async (dispatch) => {
 // confirm reservation
 export const confirmReservation = (resId) => async (dispatch) => {
   dispatch({ type: CONFIRM_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    const result = await axios.post(`/reservation/confirmReservation/${resId}`);
+    const result = await axios.post(
+      `/reservation/confirmReservation/${resId}`,
+      options
+    );
     dispatch({ type: CONFIRM_RESERVATION_SUCC });
     dispatch(getTerrainReservations(result.data.reservation.terrainOwner));
   } catch (error) {
@@ -75,8 +103,16 @@ export const confirmReservation = (resId) => async (dispatch) => {
 //decline reservation
 export const declineReservation = (resId) => async (dispatch) => {
   dispatch({ type: DECLINE_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    const result = await axios.post(`/reservation/declineReservation/${resId}`);
+    const result = await axios.post(
+      `/reservation/declineReservation/${resId}`,
+      options
+    );
     dispatch({ type: DECLINE_RESERVATION_SUCC });
     dispatch(getTerrainReservations(result.data.reservation.terrainOwner));
   } catch (error) {
@@ -86,9 +122,15 @@ export const declineReservation = (resId) => async (dispatch) => {
 //delete reservation
 export const deleteReservation = (resId) => async (dispatch) => {
   dispatch({ type: DELETE_RESERVATION });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
     const result = await axios.delete(
-      `/reservation/deleteReservation/${resId}`
+      `/reservation/deleteReservation/${resId}`,
+      options
     );
     dispatch({ type: DELETE_RESERVATION_SUCC });
     dispatch(getUserReservations(result.data.reservation.user));

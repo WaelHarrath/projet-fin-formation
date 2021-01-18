@@ -5,8 +5,8 @@ import * as IoIcons from "react-icons/io";
 
 export const SideBarDataAdmin = [
   {
-    title: "Home",
-    path: "/dashboard",
+    title: "Profile",
+    path: "/profile",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },
@@ -23,8 +23,8 @@ export const SideBarDataAdmin = [
     cName: "nav-text",
   },
   {
-    title: "My Profile",
-    path: "/myProfile",
+    title: "Manage Reservations",
+    path: "/manageReservations",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
   },

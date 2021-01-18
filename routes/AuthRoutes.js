@@ -4,7 +4,6 @@ const express = require("express");
 const router = express.Router();
 
 const multer = require("multer");
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./imageUploads");
@@ -42,6 +41,11 @@ router.post("/login", loginRules(), validation, loginController);
 router.get("/current", isAuth(), currentUserController);
 
 // set user avatar
-router.post("/userAvatar/:id", upload.single("avatar"), setAvatarController);
+router.post(
+  "/userAvatar/:id",
+  isAuth(),
+  upload.single("avatar"),
+  setAvatarController
+);
 
 module.exports = router;

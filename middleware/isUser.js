@@ -1,0 +1,24 @@
+const passport = require("passport");
+const User = require("../models/UserSchema");
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
+
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.SecretKey,
+};
+passport.use(
+  new JwtStrategy(opts, async (jwt_payload, done) => {
+    try {
+      const user = await User.findOne({ _id: jwt_payload._id }).select(
+        "-password"
+      );
+      user && user.role === "footBaller" ? done(null, user) : done(null, false);
+    } catch (error) {
+      console.log(error);
+    }
+  })
+);
+
+module.exports = isUser = () =>
+  passport.authenticate("jwt", { session: false });

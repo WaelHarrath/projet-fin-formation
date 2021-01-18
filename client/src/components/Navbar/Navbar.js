@@ -7,7 +7,7 @@ import * as AiIcons from "react-icons/ai";
 import { SideBarDataFootballer } from "./SideBarDataFootballer";
 import { IconContext } from "react-icons";
 import { SideBarDataTerrOwner } from "./SideBarDataTerrOwner";
-import { SideBarDataAdmin } from "./SideBarDataAdmin";
+import {SideBarDataAdmin} from "./SideBarDataAdmin"
 import { Link ,useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../JS/Actions/UserActions";
@@ -99,8 +99,16 @@ function NavBar() {
                     </li>
                   );
                 })
-              : role === "terrainOwner"
-              ? SideBarDataTerrOwner.map((item, index) => {
+              :role==="terrainOwner"?  SideBarDataTerrOwner.map((item, index) => {
+                  return (
+                    <li key={index} className={item.cName}>
+                      <Link to={item.path}>
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </Link>
+                    </li>
+                  );
+                }): SideBarDataAdmin.map((item, index) => {
                   return (
                     <li key={index} className={item.cName}>
                       <Link to={item.path}>
@@ -110,16 +118,7 @@ function NavBar() {
                     </li>
                   );
                 })
-              : SideBarDataAdmin.map((item, index) => {
-                  return (
-                    <li key={index} className={item.cName}>
-                      <Link to={item.path}>
-                        {item.icon}
-                        <span>{item.title}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
+              }
           </ul>
         </nav>
       </IconContext.Provider>

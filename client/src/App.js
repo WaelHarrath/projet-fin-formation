@@ -16,7 +16,9 @@ import ReservationDemandes from "./components/TerrainOwnerPages/ReservationDeman
 import MakeReservation from "./components/FootballerPages/MakeReservation/MakeReservation";
 import ReservedTerrain from "./components/FootballerPages/ReservedTerrain/ReservedTerrain";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
-
+import AllReservations from "./components/AdminPages/AllReservations/AllReservations";
+import AllTerrains from "./components/AdminPages/AllTerrains/AllTerrains";
+import AllUsers from "./components/AdminPages/AllUsers/AllUsers";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,6 +44,9 @@ function App() {
         <PrivateRoute path="/searchTerrains" component={SearchTerrains} />
         <PrivateRoute path="/makeReservation" component={MakeReservation} />
         <PrivateRoute path="/myReservations" component={ReservedTerrain} />
+        <PrivateRoute path="/manageReservations" component={AllReservations} />
+        <PrivateRoute path="/manageTerrains" component={AllTerrains} />
+        <PrivateRoute path="/manageUser" component={AllUsers} />
         <Route path="/*" component={ErrorPage} />
       </Switch>
     </div>

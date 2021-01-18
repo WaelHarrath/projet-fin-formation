@@ -66,8 +66,13 @@ export const currentUser = () => async (dispatch) => {
 //change user avatar
 export const changeAvatar = (id, data, history) => async (dispatch) => {
   dispatch({ type: CHANGE_AVATAR });
+  const options = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
   try {
-    let result = await axios.post(`/user/userAvatar/${id}`, data);
+    let result = await axios.post(`/user/userAvatar/${id}`, data, options);
     dispatch({ type: CHANGE_AVATAR_SUCC, payload: result.data });
     dispatch(currentUser());
     history.push("/profile");
