@@ -86,7 +86,6 @@ exports.searchTerrainController = async (req, res) => {
       res.status(200).send({ data: result });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({ error });
   }
 };
@@ -149,7 +148,6 @@ exports.updateTerrainController = async (req, res) => {
       }
     });
   } catch (error) {
-    console.log("error", error);
     res.status(500).send({ msg: "updating was unsuccessful !!" });
   }
 };

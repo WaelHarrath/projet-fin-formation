@@ -13,7 +13,8 @@ passport.use(
       const user = await User.findOne({ _id: jwt_payload._id }).select(
         "-password"
       );
-      user && user.role === "terrainOwner"
+
+      user && user.role == "terrainOwner"
         ? done(null, user)
         : done(null, false);
     } catch (error) {

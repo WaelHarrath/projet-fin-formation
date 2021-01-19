@@ -34,7 +34,6 @@ exports.addUserController = async (req, res) => {
 
     newUser.password = hashedPassword;
 
-    console.log(newUser);
     const payload = {
       _id: newUser._id,
       fullName: newUser.fullName,
@@ -105,7 +104,7 @@ exports.getAllTerrainController = async (req, res) => {
     if (!result) {
       return res.status(400).send({ msg: "No Terrain Found !!" });
     }
-    res.status(400).send({ terrains: result, msg: "Found all terrains" });
+    res.status(200).send({ terrains: result, msg: "Found all terrains" });
   } catch (error) {
     res.status(500).send({ errors: error, msg: "Error finding all terrains" });
   }

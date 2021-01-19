@@ -44,10 +44,7 @@ export const deleteReservations = (resId) => async (dispatch) => {
     },
   };
   try {
-    const result = await axios.delete(
-      `/admin/deleteReservation/${resId}`,
-      options
-    );
+    await axios.delete(`/admin/deleteReservation/${resId}`, options);
     dispatch({ type: DELETE_RESERVATIONS });
     dispatch(getAllReservations());
   } catch (error) {
@@ -83,7 +80,7 @@ export const addUser = (user) => async (dispatch) => {
     },
   };
   try {
-    const result = await axios.post("/admin/addUser", user, options);
+     await axios.post("/admin/addUser", user, options);
     dispatch({ type: ADD_USER });
     dispatch(getAllUsers());
   } catch (error) {
@@ -98,11 +95,7 @@ export const updateUser = (userId, user) => async (dispatch) => {
     },
   };
   try {
-    const result = await axios.post(
-      `/admin/updateUser/${userId}`,
-      user,
-      options
-    );
+  await axios.post(`/admin/updateUser/${userId}`, user, options);
     dispatch({ type: UPDATE_USER });
     dispatch(getAllUsers());
   } catch (error) {
@@ -117,14 +110,14 @@ export const deleteUser = (userId) => async (dispatch) => {
     },
   };
   try {
-    const result = await axios.delete(`/admin/deleteUser/${userId}`, options);
+    await axios.delete(`/admin/deleteUser/${userId}`, options);
     dispatch({ type: DELETE_USER });
     dispatch(getAllUsers());
   } catch (error) {
     dispatch({ type: DELETE_USER_FAIL, payload: error });
   }
-};
-
+}; 
+   
 // terrain actions
 
 //get all terrains
@@ -137,10 +130,9 @@ export const getAllTerrains = () => async (dispatch) => {
   };
   try {
     const result = await axios.get("/admin/allTerrains", options);
-    console.log(result);
-    dispatch({ type: GET_ALL_TERRAINS, payload: result });
+
+    dispatch({ type: GET_ALL_TERRAINS, payload: result.data });
   } catch (error) {
-    console.log(error);
     dispatch({ type: GET_ALL_TERRAINS_FAIL, payload: error });
   }
 };
@@ -154,10 +146,7 @@ export const deleteTerrains = (terrainId) => async (dispatch) => {
     },
   };
   try {
-    const result = await axios.delete(
-      `/admin/deleteTerrain/${terrainId}`,
-      options
-    );
+    await axios.delete(`/admin/deleteTerrain/${terrainId}`, options);
     dispatch({ type: DELETE_TERRAINS });
     dispatch(getAllTerrains());
   } catch (error) {

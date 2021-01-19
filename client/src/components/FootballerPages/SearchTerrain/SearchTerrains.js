@@ -14,6 +14,8 @@ function SearchTerrains() {
   const searchedError = useSelector(
     (state) => state.terrainReducer.searchTerError
   );
+  const user = useSelector((state) => state.userReducer.user);
+  const userRole = user && user.role;
   useEffect(() => {
     dispatch(searchTerrains(searchAdr));
   }, [searchAdr]);
@@ -42,7 +44,9 @@ function SearchTerrains() {
           <Spinner animation="border" variant="success" />
         ) : (
           searchedTerrs &&
-          searchedTerrs.map((el, i) => <TerrainCard key={i} terrain={el} />)
+          searchedTerrs.map((el, i) => (
+            <TerrainCard key={i} terrain={el} role={userRole} />
+          ))
         )}
       </div>
     </div>

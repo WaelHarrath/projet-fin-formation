@@ -3,8 +3,8 @@ import "./TerrainCard.css";
 import { Carousel, Card, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { deleteTerrain, toggleEdit } from "../../JS/Actions/TerrainActions";
-import { Redirect, useHistory, Link } from "react-router-dom";
-import MakeReservation from "../FootballerPages/MakeReservation/MakeReservation";
+import { useHistory, Link } from "react-router-dom";
+
 function TerrainCard({ terrain, role, userId }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -107,12 +107,7 @@ function TerrainCard({ terrain, role, userId }) {
         <div className="buttons">
           {role === "footBaller" ? (
             <Link to={{ pathname: "/makeReservation", state: terrain }}>
-              <Button
-                variant="outline-primary edit-button"
-                onClick={(e) => {
-                  handleEditBook(e);
-                }}
-              >
+              <Button variant="outline-primary edit-button">
                 {role === "terrainOwner" ? "Edit" : "Book"}
               </Button>
             </Link>

@@ -11,9 +11,9 @@ function MakeReservation({location}) {
   const userName  =  user && user.fullName;
   const userEmail  =  user && user.email;
   const userId=user&&user._id;
-  console.log(location.state);
+
  const terrId=location.state._id;
- console.log(terrId)
+
   return (
     <div className="make-res-container">
       <div className="res-formBx">

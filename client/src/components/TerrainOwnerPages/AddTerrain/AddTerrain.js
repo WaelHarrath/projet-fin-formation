@@ -35,22 +35,9 @@ function AddTerrain() {
     setTerrImages(null);
   };
   const handleSubmit = async (e) => {
-    // const data = new FormData();
-    // data.append("name", terrName);
-    // data.append("address", terrAdress);
-    // data.append("phone", contactPhone);
-    // data.append("format", `${terrFormat1}X${terrFormat2}mètres`);
-    // data.append("type", terrType);
-    // data.append("surface", terrSurface);
-    // data.append("price", terrPrice);
-    // if (terrImages) {
-    //   Array.from(terrImages).forEach((el) => {
-    //     data.append("terrainImages", el);
-    //   });
-    // }
-    // console.log(data);
+   
     if (editTerr && editTerr === true) {
-      console.log("updating ...");
+      
       const updateData = new FormData();
       updateData.append("name", terrName);
       updateData.append("address", terrAdress);
@@ -79,7 +66,7 @@ function AddTerrain() {
           data.append("terrainImages", el);
         });
       }
-      console.log(data);
+     
       dispatch(addTerrain(data, history, userId));
     }
   };

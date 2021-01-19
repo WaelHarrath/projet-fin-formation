@@ -101,7 +101,7 @@ export const updateTerrain = (updateData, editedTerrId, history) => async (
     },
   };
   try {
-    let result = await axios.post(
+    await axios.post(
       `/terrain/updateTerrain/${editedTerrId}`,
       updateData,
       options
@@ -123,13 +123,10 @@ export const deleteTerrain = (id, terId) => async (dispatch) => {
     },
   };
   try {
-    let result = await axios.delete(
-      `/terrain/${id}/myTerrains/${terId}`,
-      options
-    );
+    await axios.delete(`/terrain/${id}/myTerrains/${terId}`, options);
     dispatch({ type: DELETE_TERRAIN });
     dispatch(getTerrains(id));
   } catch (error) {
-    dispatch({ type: FAIL_TERRAIN, payload: error.reqponse.data });
+    dispatch({ type: FAIL_TERRAIN, payload: error.response.data });
   }
 };
